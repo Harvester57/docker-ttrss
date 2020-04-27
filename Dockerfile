@@ -1,4 +1,4 @@
-# Using https://github.com/gliderlabs/docker-alpine,
+# Using https://hub.docker.com/_/alpine/,
 # plus  https://github.com/just-containers/s6-overlay for a s6 Docker overlay.
 FROM alpine:3.11
 # Initially was based on work of Christian Lück <christian@lueck.tv>.
