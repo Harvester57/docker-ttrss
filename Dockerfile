@@ -1,6 +1,6 @@
 # Using https://hub.docker.com/_/alpine/,
 # plus  https://github.com/just-containers/s6-overlay for a s6 Docker overlay.
-FROM alpine:3.11
+FROM alpine:3.12.1
 # Initially was based on work of Christian Lück <christian@lueck.tv>.
 LABEL description="A complete, self-hosted Tiny Tiny RSS (TTRSS) environment." \
       maintainer="Andreas Löffler <andy@x86dev.com>"
@@ -23,7 +23,7 @@ COPY root /
 
 # Add s6 overlay.
 # Note: Tweak this line if you're running anything other than x86 AMD64 (64-bit).
-RUN curl -L -s https://github.com/just-containers/s6-overlay/releases/download/v1.22.1.0/s6-overlay-amd64.tar.gz | tar xvzf - -C /
+RUN curl -L -s https://github.com/just-containers/s6-overlay/releases/download/v2.1.0.2/s6-overlay-amd64.tar.gz | tar xvzf - -C /
 
 # Add wait-for-it.sh
 ADD https://raw.githubusercontent.com/Eficode/wait-for/master/wait-for /srv
