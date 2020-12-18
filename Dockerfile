@@ -1,6 +1,7 @@
 # Using https://hub.docker.com/_/alpine/,
 # plus  https://github.com/just-containers/s6-overlay for a s6 Docker overlay.
-FROM alpine:3.12.1
+FROM alpine:3.12.3
+
 # Initially was based on work of Christian Lück <christian@lueck.tv>.
 LABEL description="A complete, self-hosted Tiny Tiny RSS (TTRSS) environment." \
       maintainer="Andreas Löffler <andy@x86dev.com>"
