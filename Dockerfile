@@ -11,7 +11,7 @@ RUN set -xe && \
     apk add --no-cache --virtual=run-deps \
     busybox nginx git ca-certificates curl nano \
     php81 php81-fpm php81-curl php81-dom php81-gd php81-iconv php81-fileinfo php81-json \
-    php81-mcrypt php81-pgsql php81-pcntl php81-pdo php81-pdo_pgsql \
+    php81-pgsql php81-pcntl php81-pdo php81-pdo_pgsql \
     php81-mysqli php81-pdo_mysql \
     php81-mbstring php81-posix php81-session php81-intl
 
