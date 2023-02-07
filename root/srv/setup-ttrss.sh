@@ -53,19 +53,16 @@ setup_ttrss()
 
     TTRSS_PATH_THEMES=${TTRSS_PATH}/themes.local
     TTRSS_PATH_PLUGINS=${TTRSS_PATH}/plugins.local
+    TTRSS_GIT_COMMIT=b6d58606ddce590a3d88dab94e00d6e00d75749a
 
     if [ ! -d ${TTRSS_PATH} ]; then
         mkdir -p ${TTRSS_PATH}
-        if [ -n "$TTRSS_GIT_TAG" ]; then
-            echo "Setup: Setting up Tiny Tiny RSS '$TTRSS_GIT_TAG' ..."
-            cd ${TTRSS_PATH}
-            git init .
-            git fetch --depth=1 ${TTRSS_REPO_URL} refs/tags/${TTRSS_GIT_TAG}:refs/tags/${TTRSS_GIT_TAG}
-            git checkout tags/${TTRSS_GIT_TAG}
-        else
-            echo "Setup: Setting up Tiny Tiny RSS (latest revision) ..."
-            git clone --depth=1 ${TTRSS_REPO_URL} ${TTRSS_PATH}
-        fi
+        echo "Setup: Setting up Tiny Tiny RSS; Using commit ${TTRSS_GIT_COMMIT}"
++        git clone ${TTRSS_REPO_URL} ${TTRSS_PATH}
++        old="$(pwd)"
++        cd ${TTRSS_PATH}
++        git checkout "${TTRSS_GIT_COMMIT}"
++        cd "${old}"
 
         mkdir -p ${TTRSS_PATH_PLUGINS}
         git clone --depth=1 https://github.com/sepich/tt-rss-mobilize.git ${TTRSS_PATH_PLUGINS}/mobilize

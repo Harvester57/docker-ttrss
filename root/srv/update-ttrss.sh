@@ -11,8 +11,8 @@ update_ttrss()
         return
     fi
 
-    echo "Updating: Tiny Tiny RSS"
-    ( cd ${TTRSS_PATH} && git pull origin HEAD )
+    #echo "Updating: Tiny Tiny RSS"
+    #( cd ${TTRSS_PATH} && git pull origin HEAD )
 }
 
 update_plugin_mobilize()
