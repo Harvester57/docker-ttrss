@@ -58,11 +58,11 @@ setup_ttrss()
     if [ ! -d ${TTRSS_PATH} ]; then
         mkdir -p ${TTRSS_PATH}
         echo "Setup: Setting up Tiny Tiny RSS; Using commit ${TTRSS_GIT_COMMIT}"
-+        git clone ${TTRSS_REPO_URL} ${TTRSS_PATH}
-+        old="$(pwd)"
-+        cd ${TTRSS_PATH}
-+        git checkout "${TTRSS_GIT_COMMIT}"
-+        cd "${old}"
+        git clone ${TTRSS_REPO_URL} ${TTRSS_PATH}
+        old="$(pwd)"
+        cd ${TTRSS_PATH}
+        git checkout "${TTRSS_GIT_COMMIT}"
+        cd "${old}"
 
         mkdir -p ${TTRSS_PATH_PLUGINS}
         git clone --depth=1 https://github.com/sepich/tt-rss-mobilize.git ${TTRSS_PATH_PLUGINS}/mobilize
