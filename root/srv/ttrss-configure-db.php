@@ -74,7 +74,7 @@ try {
 catch (PDOException $e) {
     echo 'Database table not found, applying schema... ' . PHP_EOL;
 
-    $schema = file_get_contents('/sql/psql/schema.sql');
+    $schema = file_get_contents('/var/www/ttrss/sql/pgsql/schema.sql');
     $schema = preg_replace('/--(.*?);/', '', $schema);
     $schema = preg_replace('/[\r\n]/', ' ', $schema);
     $schema = trim($schema, ' ;');
