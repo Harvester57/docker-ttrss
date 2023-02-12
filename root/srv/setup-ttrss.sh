@@ -143,8 +143,8 @@ setup_ttrss()
 setup_db()
 {
     echo "Setup: Database"
-    php -f /srv/ttrss-configure-db.php
-    php -f /srv/ttrss-configure-plugin-mobilize.php
+    php81 -f /srv/ttrss-configure-db.php
+    php81 -f /srv/ttrss-configure-plugin-mobilize.php
 }
 
 setup_nginx
