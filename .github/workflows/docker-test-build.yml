@@ -20,4 +20,4 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: false
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/ttrss:latest
+          tags: localbuild/testimage:latest
