@@ -2,7 +2,7 @@ name: Docker Image Grype scan
 
 on:
   push:
-    branches: [main]
+    branches: [master]
     tags:
       - '*'
   workflow_dispatch:
