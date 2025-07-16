@@ -18,11 +18,7 @@ jobs:
       - name: Harden the runner (Audit all outbound calls)
         uses: step-security/harden-runner@6c439dc8bdf85cadbbce9ed30d1c7b959517bc49 # v2.12.2
         with:
-          egress-policy: block
-          allowed-endpoints: >
-            api.github.com:443
-            index.rubygems.org:443
-            rubygems.org:443
+          egress-policy: audit
 
       - name: Wait for build
         uses: lewagon/wait-on-check-action@0dceb95e7c4cad8cc7422aee3885998f5cab9c79  # v1.4.0
