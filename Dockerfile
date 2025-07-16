@@ -10,10 +10,10 @@ RUN set -xe && \
     apk update && apk upgrade && \
     apk add --no-cache --virtual=run-deps \
     busybox nginx git ca-certificates curl nano \
-    php8 php8-fpm php8-curl php8-dom php8-gd php8-iconv php8-fileinfo php8-json \
-    php8-pgsql php8-pcntl php8-pdo php8-pdo_pgsql \
-    php8-mysqli php8-pdo_mysql \
-    php8-mbstring php8-posix php8-session php8-intl sudo
+    php84 php84-fpm php84-curl php84-dom php84-gd php84-iconv php84-fileinfo php84-json \
+    php84-pgsql php84-pcntl php84-pdo php84-pdo_pgsql \
+    php84-mysqli php84-pdo_mysql \
+    php84-mbstring php84-posix php84-session php84-intl sudo
 
 # Add user www-data for php-fpm.
 # 82 is the standard uid/gid for "www-data" in Alpine.
