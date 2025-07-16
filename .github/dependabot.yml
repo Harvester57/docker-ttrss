@@ -1,34 +1,34 @@
 version: 2
 updates:
-  - package-ecosystem: "docker" # See documentation for possible values
-    directory: "/" # Location of package manifests
-    schedule:
-      # Check for updates to GitHub Actions every weekday
-      interval: "cron"
-      cronjob: "0 18 * * *"
-    groups:
-      # Specify a name for the group, which will be used in pull request titles
-      # and branch names
-      docker-dependencies:
-        # Define patterns to include dependencies in the group (based on
-        # dependency name)
-        applies-to: version-updates # Applies the group rule to version updates
-        patterns:
-          - "*"       # A wildcard that matches all dependencies in the package
-                      # ecosystem. Note: using "*" may open a large pull request
-  - package-ecosystem: "github-actions"
-    directory: "/"
-    schedule:
-      # Check for updates to GitHub Actions every weekday
-      interval: "cron"
-      cronjob: "0 18 * * *"
-    groups:
-      # Specify a name for the group, which will be used in pull request titles
-      # and branch names
-      actions-dependencies:
-        # Define patterns to include dependencies in the group (based on
-        # dependency name)
-        applies-to: version-updates # Applies the group rule to version updates
-        patterns:
-          - "*"       # A wildcard that matches all dependencies in the package
-                      # ecosystem. Note: using "*" may open a large pull request
+- package-ecosystem: "docker"
+  directory: "/"
+  commit-message:
+    prefix: "docker"
+  labels: [ 'docker' ]
+  assignees:
+  - "Harvester57"
+  schedule:
+    interval: "cron"
+    cronjob: "0 7 * * *"
+    timezone: "Europe/Paris"
+  groups:
+    docker-dependencies:
+      applies-to: version-updates
+      patterns:
+      - "*"
+- package-ecosystem: "github-actions"
+  directory: "/"
+  commit-message:
+    prefix: "actions"
+  labels: [ 'github_actions' ]
+  assignees:
+  - "Harvester57"
+  schedule:
+    interval: "cron"
+    cronjob: "0 7 * * *"
+    timezone: "Europe/Paris"
+  groups:
+    actions-dependencies:
+      applies-to: version-updates
+      patterns:
+      - "*"
