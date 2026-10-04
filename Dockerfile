@@ -3,12 +3,12 @@
 FROM alpine:3.24.1
 
 # Initially was based on work of Christian Lück <christian@lueck.tv>.
-LABEL description="A complete, self-hosted Tiny Tiny RSS (TTRSS) environment." \
-      maintainer="Andreas Löffler <andy@x86dev.com>"
+LABEL org.opencontainers.image.authors="Andreas Löffler <andy@x86dev.com>"
+LABEL org.opencontainers.image.description="A complete, self-hosted Tiny Tiny RSS (TTRSS) environment."
+LABEL org.opencontainers.image.licenses="GPL-3.0-or-later"
 
 RUN set -xe && \
-    apk update && apk upgrade && \
-    apk add --no-cache --virtual=run-deps \
+    apk add --no-cache \
     busybox nginx git ca-certificates curl nano \
     php84 php84-fpm php84-curl php84-dom php84-gd php84-iconv php84-fileinfo php84-json \
     php84-pgsql php84-pcntl php84-pdo php84-pdo_pgsql \
@@ -31,15 +31,11 @@ ADD https://raw.githubusercontent.com/eficode/wait-for/v2.2.4/wait-for /srv
 RUN chmod 755 /srv/wait-for
 
 # Expose Nginx ports.
-EXPOSE 8080
-EXPOSE 4443
+EXPOSE 8080 4443
 
 # Expose default database credentials via ENV in order to ease overwriting.
-ENV DB_NAME ttrss
-ENV DB_USER ttrss
-ENV DB_PASS ttrss
-
-# Clean up.
-RUN set -xe && apk del --progress --purge && rm -rf /var/cache/apk/* && rm -rf /var/lib/apt/lists/*
+ENV DB_NAME=ttrss \
+    DB_USER=ttrss \
+    DB_PASS=ttrss
 
 ENTRYPOINT ["/init"]
