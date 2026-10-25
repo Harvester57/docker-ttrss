@@ -1,0 +1,51 @@
+services:
+  tinydatabase:
+    image: postgres:18-alpine
+    container_name: tinydatabase
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER:-ttrss}
+      POSTGRES_PASSWORD: ${DB_PASS:-ttrss}
+      POSTGRES_DB: ${DB_NAME:-ttrss}
+    volumes:
+      - ttrss-pgdata:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER:-ttrss} -d $${POSTGRES_DB:-ttrss}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  ttrss:
+    image: ${TTRSS_IMAGE:-ghcr.io/harvester57/docker-ttrss:latest}
+    build: .
+    container_name: ttrss-new
+    restart: always
+    depends_on:
+      tinydatabase:
+        condition: service_healthy
+    ports:
+      - "${TTRSS_LISTEN_ADDR:-127.0.0.1}:${TTRSS_LISTEN_PORT:-8888}:8080"
+    environment:
+      DB_HOST: tinydatabase
+      DB_PORT: "5432"
+      DB_NAME: ${DB_NAME:-ttrss}
+      DB_USER: ${DB_USER:-ttrss}
+      DB_PASS: ${DB_PASS:-ttrss}
+      TTRSS_SINGLEUSER: ${TTRSS_SINGLEUSER:-true}
+      TTRSS_PORT: "8080"
+      TTRSS_URL: ${TTRSS_URL:-reader.harvester.fr}
+      TTRSS_PROTO: ${TTRSS_PROTO:-https}
+      TTRSS_SELF_URL: ${TTRSS_SELF_URL:-https://reader.harvester.fr/}
+      SELF_URL_PATH: ${SELF_URL_PATH:-https://reader.harvester.fr/}
+    volumes:
+      - ttrss-app:/var/www/ttrss
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://127.0.0.1:8080/healthz || exit 1"]
+      interval: 30s
+      timeout: 10s
+      start_period: 60s
+      retries: 3
+
+volumes:
+  ttrss-pgdata:
+  ttrss-app:
