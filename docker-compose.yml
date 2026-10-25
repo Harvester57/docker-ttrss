@@ -16,7 +16,7 @@ services:
       retries: 10
 
   ttrss:
-    image: ${TTRSS_IMAGE:-ghcr.io/harvester57/docker-ttrss:latest}
+    image: ${TTRSS_IMAGE:-ghcr.io/harvester57/docker-ttrss:main}
     build: .
     container_name: ttrss-new
     restart: always

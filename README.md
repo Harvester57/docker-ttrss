@@ -51,7 +51,7 @@ docker run -d --link tinydatabase:db \
   -e TTRSS_PORT=8080 \
   -p 127.0.0.1:8888:8080 \
   --name ttrss-new \
-  ghcr.io/harvester57/docker-ttrss:latest
+  ghcr.io/harvester57/docker-ttrss:main
 ```
 
 ## Accessing your Tiny Tiny RSS (TT-RSS)
