@@ -3,8 +3,7 @@
 # Make sure to have a defined set of PHP binaries,
 # regardless of how the package maintainer(s) named those.
 
-rm /usr/bin/php
-ln -s /usr/bin/php7 /usr/bin/php
+PHP_SUFFIX="${PHP_VER:-85}"
 
-rm /usr/sbin/php-fpm
-ln -s /usr/sbin/php-fpm7 /usr/sbin/php-fpm
+ln -sf "/usr/bin/php${PHP_SUFFIX}" /usr/bin/php
+ln -sf "/usr/sbin/php-fpm${PHP_SUFFIX}" /usr/sbin/php-fpm
